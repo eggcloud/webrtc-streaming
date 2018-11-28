@@ -37,11 +37,7 @@ sfutest.send({"message": rtpforward});
 #### 3. FFmpeg
 * RTP to RTMP
 ```sh
-# ffmpeg version 2.8.15
-ffmpeg -analyzeduration 300M -probesize 300M -i janus.sdp -c:v copy -c:a aac -strict -2 -preset ultrafast -tune zerolatency -f flv <RTMP URL>/<stream name>
-
-# ffmpeg version 3.4.4
-ffmpeg -max_delay 5000 -reorder_queue_size 16384 -protocol_whitelist file,crypto,udp,rtp -re -i janus.sdp -vcodec copy -acodec aac -f flv <RTMP URL>/<stream name>
+ffmpeg -analyzeduration 300M -probesize 300M -protocol_whitelist file,udp,rtp -i janus.sdp -c:v copy -c:a aac -preset ultrafast -tune zerolatency -f flv <RTMP URL>/<stream name>
 ```
 
 ## RTP Rebroadcaster
